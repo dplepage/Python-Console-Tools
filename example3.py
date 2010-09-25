@@ -1,6 +1,7 @@
 import time
-import __builtin__
+from decorate import main
 from functools import wraps
+import sys
 from progress_bar import progressinfo as pinf
 
 def loop(x):
@@ -9,32 +10,17 @@ def loop(x):
 def showprogress(fn):
     @wraps(fn)
     def tmp(*args, **kw):
-        global range
-        x = range
-        range = lambda *args, **kwargs: pinf(__builtins__.range(*args,**kwargs))
+        global loop
+        x = loop
+        loop = lambda a: pinf(x(a))
         fn(*args,**kw)
-        range = x
+        loop = x
     return tmp
+import time
 
-# @showprogress
-
-def doitalot():
-    for i in loop(range(5)):
-        print 'foo'
-        # doabunchofstuff()
-
-foobar = range(100)
+@main
 @showprogress
-def doabunchofstuff():
-    '''
-    >>> doabunchofstuff()
-    Done!
-    '''
-    for i in foobar:
+def foo():
+    for i in loop(range(100)):
         time.sleep(.01)
-    print "Done!"
-
-doabunchofstuff()
-
-# import doctest
-# doctest.testmod()
+    print "We're done!"

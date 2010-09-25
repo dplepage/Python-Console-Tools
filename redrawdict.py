@@ -17,9 +17,14 @@ def redraw_dict(fn):
 
 @redraw_dict
 def do_progress():
-    d = dict()
+    d = dict(x=12, foo=19)
     for i in range(10):
         time.sleep(1)
         d['foo'] = i
-    
+    print
+
 do_progress()
+
+
+def main():
+    info.draw("dictx", 'loop2')
