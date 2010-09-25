@@ -5,6 +5,8 @@ import warnings
 import plac
 from progress_bar import progressinfo as pinf
 
+show_loops = False
+
 class MultipleMainWarning(Warning):
     pass
 
@@ -21,16 +23,19 @@ def main(fn):
         call(fn)
 
 def loop(x):
-    return x
+    if show_loops:
+        return pinf(x)
+    else:
+        return x
 
 def showprogress(fn):
     @wraps(fn)
     def tmp(*args, **kw):
-        global loop
-        x = loop
-        loop = lambda a: pinf(x(a))
+        global show_loops
+        x = show_loops
+        show_loops = True
         fn(*args,**kw)
-        loop = x
+        show_loops = x
     return tmp
 import time
 

@@ -3,6 +3,7 @@ from decorate import subcommand, run_subcommands
 
 @subcommand
 def cmd1():
+    '''this is the cmd1 help'''
     print "hi!"
 
 @subcommand

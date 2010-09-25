@@ -6,15 +6,9 @@ def fail(i):
         raise ValueError("Egad!")
     fail(i+1)
 
-
 @main
-def foo(set_name, k=3, patch_size=7, w_err=.1, w_sm=.2):
-    print ( "Running on set {set_name} with options K={k}, "
-            "patch_size={patch_size} w_err={w_err}, w_sm={w_sm}".format(**locals()))
+def foo(name, n = 7, k = 11, pizza="delicious"):
+    print ( "Running with name {name} and options n={n}, k={k}\n"
+            "Also, pizza is {pizza}".format(**locals()))
     fail(1)
 
-
-# foo('foo')
-# @main
-# def bar(*args):
-#     print args
