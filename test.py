@@ -1,6 +1,8 @@
 import sys
 import plac
 
+from consolation import main
+
 def fail(i):
     if i == 10: raise Exception("Egad!")
     fail(i+1)

@@ -1,4 +1,3 @@
-'''help for this module'''
 from decorate import subcommand, run_subcommands
 
 @subcommand
